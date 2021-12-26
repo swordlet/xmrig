@@ -76,8 +76,8 @@ public:
     inline const String &poolWallet() const             { return m_poolWallet; }
     inline const uint32_t *nonce() const                { return reinterpret_cast<const uint32_t*>(m_blob + nonceOffset()); }
     inline const uint8_t *blob() const                  { return m_blob; }
-    inline int32_t nonceOffset() const                  { auto f = algorithm().family(); return (f == Algorithm::KAWPOW) ? 32 : ((f == Algorithm::GHOSTRIDER) ? 76 : 39); }
-    inline size_t nonceSize() const                     { return (algorithm().family() == Algorithm::KAWPOW) ?  8 :  4; }
+    inline int32_t nonceOffset() const                  { auto f = algorithm().family(); return (f == Algorithm::KAWPOW) ? 32 : ((f == Algorithm::GHOSTRIDER) ? 76 : ((f == Algorithm::RX_XDAG) ? 56:39)); }
+    inline size_t nonceSize() const                     { return (algorithm().family() == Algorithm::KAWPOW || algorithm().family() == Algorithm::RX_XDAG) ?  8 :  4; }
     inline size_t size() const                          { return m_size; }
     inline uint32_t *nonce()                            { return reinterpret_cast<uint32_t*>(m_blob + nonceOffset()); }
     inline uint32_t backend() const                     { return m_backend; }
