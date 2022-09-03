@@ -35,12 +35,11 @@ public:
         MONERO,
         SUMO,
         ARQMA,
-        DERO,
         GRAFT,
         KEVA,
         RAVEN,
         WOWNERO,
-        XDAG,
+		XDAG,
         MAX
     };
 

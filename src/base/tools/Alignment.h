@@ -1,6 +1,6 @@
 /* XMRig
  * Copyright (c) 2018-2022 SChernykh   <https://github.com/SChernykh>
- * Copyright (c) 2016-2022 XMRig       <support@xmrig.com>
+ * Copyright (c) 2016-2022 XMRig       <https://github.com/xmrig>, <support@xmrig.com>
  *
  *   This program is free software: you can redistribute it and/or modify
  *   it under the terms of the GNU General Public License as published by
@@ -16,24 +16,38 @@
  *   along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef XMRIG_SUMMARY_H
-#define XMRIG_SUMMARY_H
+#ifndef XMRIG_ALIGNMENT_H
+#define XMRIG_ALIGNMENT_H
+
+
+#include <type_traits>
+#include <cstring>
 
 
 namespace xmrig {
 
 
-class Controller;
-
-
-class Summary
+template<typename T>
+inline T readUnaligned(const T* ptr)
 {
-public:
-    static void print(Controller *controller);
-};
+    static_assert(std::is_trivially_copyable<T>::value, "T must be trivially copyable");
+
+    T result;
+    memcpy(&result, ptr, sizeof(T));
+    return result;
+}
 
 
-} // namespace xmrig
+template<typename T>
+inline void writeUnaligned(T* ptr, T data)
+{
+    static_assert(std::is_trivially_copyable<T>::value, "T must be trivially copyable");
+
+    memcpy(ptr, &data, sizeof(T));
+}
 
 
-#endif /* XMRIG_SUMMARY_H */
+} /* namespace xmrig */
+
+
+#endif /* XMRIG_ALIGNMENT_H */

@@ -78,11 +78,10 @@ public:
         RX_GRAFT        = 0x72151267,   // "rx/graft"         RandomGRAFT (Graft).
         RX_SFX          = 0x72151273,   // "rx/sfx"           RandomSFX (Safex Cash).
         RX_KEVA         = 0x7214116b,   // "rx/keva"          RandomKEVA (Keva).
-        RX_XDAG         = 0x72151208,   // "rx/xdag"           RandomX (xdagger coin).
+		RX_XDAG         = 0x72151208,   // "rx/xdag"           RandomX (xdagger coin).
         AR2_CHUKWA      = 0x61130000,   // "argon2/chukwa"    Argon2id (Chukwa).
         AR2_CHUKWA_V2   = 0x61140000,   // "argon2/chukwav2"  Argon2id (Chukwa v2).
         AR2_WRKZ        = 0x61120000,   // "argon2/wrkz"      Argon2id (WRKZ)
-        ASTROBWT_DERO   = 0x41000000,   // "astrobwt"         AstroBWT (Dero)
         KAWPOW_RVN      = 0x6b0f0000,   // "kawpow/rvn"       KawPow (RVN)
     };
 
@@ -96,7 +95,6 @@ public:
         CN_FEMTO        = 0x63110000,
         RANDOM_X        = 0x72000000,
         ARGON2          = 0x61000000,
-        ASTROBWT        = 0x41000000,
         KAWPOW          = 0x6b000000,
         GHOSTRIDER      = 0x6c000000
     };
@@ -147,7 +145,7 @@ public:
     static const char *kRX_GRAFT;
     static const char *kRX_SFX;
     static const char *kRX_KEVA;
-    static const char *kRX_XDAG;
+	static const char *kRX_XDAG;
 #   endif
 
 #   ifdef XMRIG_ALGO_ARGON2
@@ -155,11 +153,6 @@ public:
     static const char *kAR2_CHUKWA;
     static const char *kAR2_CHUKWA_V2;
     static const char *kAR2_WRKZ;
-#   endif
-
-#   ifdef XMRIG_ALGO_ASTROBWT
-    static const char *kASTROBWT;
-    static const char *kASTROBWT_DERO;
 #   endif
 
 #   ifdef XMRIG_ALGO_KAWPOW
@@ -194,14 +187,7 @@ public:
     inline uint32_t minIntensity() const                    { return ((m_id == GHOSTRIDER_RTM) ? 8 : 1); };
     inline uint32_t maxIntensity() const                    { return isCN() ? 5 : ((m_id == GHOSTRIDER_RTM) ? 8 : 1); };
 
-    inline size_t l3() const
-    {
-#       ifdef XMRIG_ALGO_ASTROBWT
-        return m_id != ASTROBWT_DERO ? l3(m_id) : 0x100000 * 20;
-#       else
-        return l3(m_id);
-#       endif
-    }
+    inline size_t l3() const                                { return l3(m_id); }
 
     inline bool operator!=(Algorithm::Id id) const          { return m_id != id; }
     inline bool operator!=(const Algorithm &other) const    { return !isEqual(other); }

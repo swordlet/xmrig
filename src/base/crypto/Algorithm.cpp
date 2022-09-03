@@ -92,11 +92,6 @@ const char *Algorithm::kAR2_CHUKWA_V2   = "argon2/chukwav2";
 const char *Algorithm::kAR2_WRKZ        = "argon2/ninja";
 #endif
 
-#ifdef XMRIG_ALGO_ASTROBWT
-const char *Algorithm::kASTROBWT        = "astrobwt";
-const char *Algorithm::kASTROBWT_DERO   = "astrobwt";
-#endif
-
 #ifdef XMRIG_ALGO_KAWPOW
 const char *Algorithm::kKAWPOW          = "kawpow";
 const char *Algorithm::kKAWPOW_RVN      = "kawpow";
@@ -154,17 +149,13 @@ static const std::map<uint32_t, const char *> kAlgorithmNames = {
     ALGO_NAME(RX_GRAFT),
     ALGO_NAME(RX_SFX),
     ALGO_NAME(RX_KEVA),
-    ALGO_NAME(RX_XDAG),
+	ALGO_NAME(RX_XDAG),
 #   endif
 
 #   ifdef XMRIG_ALGO_ARGON2
     ALGO_NAME(AR2_CHUKWA),
     ALGO_NAME(AR2_CHUKWA_V2),
     ALGO_NAME(AR2_WRKZ),
-#   endif
-
-#   ifdef XMRIG_ALGO_ASTROBWT
-    ALGO_NAME(ASTROBWT_DERO),
 #   endif
 
 #   ifdef XMRIG_ALGO_KAWPOW
@@ -274,18 +265,14 @@ static const std::map<const char *, Algorithm::Id, aliasCompare> kAlgorithmAlias
                                     ALGO_ALIAS(RX_SFX,          "randomsfx"),
     ALGO_ALIAS_AUTO(RX_KEVA),       ALGO_ALIAS(RX_KEVA,         "randomx/keva"),
                                     ALGO_ALIAS(RX_KEVA,         "randomkeva"),
-    ALGO_ALIAS_AUTO(RX_XDAG),       ALGO_ALIAS(RX_XDAG,          "randomx/xdag"),
-                                    ALGO_ALIAS(RX_XDAG,          "randomxdag"),
+	ALGO_ALIAS_AUTO(RX_XDAG),       ALGO_ALIAS(RX_XDAG,          "randomx/xdag"),
+                                    ALGO_ALIAS(RX_XDAG,          "randomxdag"),								
 #   endif
 
 #   ifdef XMRIG_ALGO_ARGON2
     ALGO_ALIAS_AUTO(AR2_CHUKWA),    ALGO_ALIAS(AR2_CHUKWA,      "chukwa"),
     ALGO_ALIAS_AUTO(AR2_CHUKWA_V2), ALGO_ALIAS(AR2_CHUKWA,      "chukwav2"),
     ALGO_ALIAS_AUTO(AR2_WRKZ),      ALGO_ALIAS(AR2_WRKZ,        "argon2/wrkz"),
-#   endif
-
-#   ifdef XMRIG_ALGO_ASTROBWT
-    ALGO_ALIAS_AUTO(ASTROBWT_DERO), ALGO_ALIAS(ASTROBWT_DERO,   "astrobwt/dero"),
 #   endif
 
 #   ifdef XMRIG_ALGO_KAWPOW
@@ -369,7 +356,6 @@ std::vector<xmrig::Algorithm> xmrig::Algorithm::all(const std::function<bool(con
         CN_UPX2,
         RX_0, RX_WOW, RX_ARQ, RX_GRAFT, RX_SFX, RX_KEVA, RX_XDAG,
         AR2_CHUKWA, AR2_CHUKWA_V2, AR2_WRKZ,
-        ASTROBWT_DERO,
         KAWPOW_RVN,
         GHOSTRIDER_RTM
     };
